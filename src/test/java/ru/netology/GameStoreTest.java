@@ -131,4 +131,19 @@ public class GameStoreTest {
 
     }
 
+    @Test
+    public void shouldGetMostPlayerIfMostPlayedOneHour() {
+
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        store.addPlayTime("Дима", 0);
+        store.addPlayTime("Петя", 1);
+
+        List<String> expected = new ArrayList<>();
+        expected.add("Петя");
+        List<String> actual = store.getMostPlayer();
+        assertEquals(expected, actual);
+
+    }
+
 }
